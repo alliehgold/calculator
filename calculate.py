@@ -26,45 +26,65 @@ def get_numbers():
          return int(num_1), int(num_2)
     else:
          return num_1, num_2
+    
 
-#Getting which operator the user would like
-user_choice = input("Please enter one of the following choices:" \
-"\n1. Add" \
-"\n2. Subtract" \
-"\n3. Multiply" \
-"\n4. Divide\n")
+user_continue = True
+    
+#Allows the user to run calculations multiple times
+while user_continue:
 
-operands = get_numbers()
+    #Getting which operator the user would like
+    user_choice = input("Please enter one of the following choices:" \
+    "\n1. Add" \
+    "\n2. Subtract" \
+    "\n3. Multiply" \
+    "\n4. Divide\n")
+
+    
+    is_valid_input = False
+
+    #This iterates to test if the user selected one of the valid options
+    #This allows for expansion when more expressions are added later
+    for i in range (1, 5):
+        if i == int(user_choice):
+            is_valid_input = True
 
 
-#Each operation will also check if the result is in integer or float, and will print the value accordingly
-#While this is not entirely necessary, it helps with readability.
-if user_choice =="1":
-        total = operands[0] + operands[1]
-        if total.is_integer():
-             total = int(total)
-        print(f"{operands[0]} + {operands[1]} = {total}")
+    #This will run the correct operation if the input is valid
+    #Each operation will also check if the result is in integer or float, and will print the value accordingly
+    #While this is not entirely necessary, it helps with readability.
+    if is_valid_input:
+        operands = get_numbers()
+        if user_choice =="1":
+                total = operands[0] + operands[1]
+                if total.is_integer():
+                    total = int(total)
+                print(f"{operands[0]} + {operands[1]} = {total}")
 
-elif user_choice == "2":
-    total = operands[0] - operands[1]
-    if total.is_integer():
-             total = int(total)
-    print(f"{operands[0]} - {operands[1]} = {total}")
+        elif user_choice == "2":
+            total = operands[0] - operands[1]
+            if total.is_integer():
+                    total = int(total)
+            print(f"{operands[0]} - {operands[1]} = {total}")
 
-elif user_choice == "3":
-    total = operands[0] * operands[1]
-    if total.is_integer():
-             total = int(total)
-    print(f"{operands[0]} * {operands[1]} = {total}")
+        elif user_choice == "3":
+            total = operands[0] * operands[1]
+            if total.is_integer():
+                    total = int(total)
+            print(f"{operands[0]} * {operands[1]} = {total}")
 
-elif user_choice == "4":
-    total = operands[0] / operands[1]
-    if total.is_integer():
-             total = int(total)
-    print(f"{operands[0]} / {operands[1]} = {total}")
+        elif user_choice == "4":
+            total = operands[0] / operands[1]
+            if total.is_integer():
+                    total = int(total)
+            print(f"{operands[0]} / {operands[1]} = {total}")
+        
+    else:
+         print("That is not a valid option")
 
-#Exits the program 
-else:
-     print("No valid choice entered. The program will now Exit.")
-     sys.exit()
-     
+    continue_choice = input("Press 'y' to perform another operation, or any other key to exit:\n")
+
+    if continue_choice != "y":
+         user_continue = False
+
+sys.exit()
