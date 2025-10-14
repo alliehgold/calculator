@@ -1,4 +1,5 @@
 import sys
+import math
 
 
 '''
@@ -38,14 +39,16 @@ while user_continue:
     "\n1. Add" \
     "\n2. Subtract" \
     "\n3. Multiply" \
-    "\n4. Divide\n")
+    "\n4. Divide" \
+    "\n5. Exponent"\
+    "\n6. Modulo(remainder)\n")
 
     
     is_valid_input = False
 
     #This iterates to test if the user selected one of the valid options
     #This allows for expansion when more expressions are added later
-    for i in range (1, 5):
+    for i in range (1, 7):
         if i == int(user_choice):
             is_valid_input = True
 
@@ -78,6 +81,18 @@ while user_continue:
             if total.is_integer():
                     total = int(total)
             print(f"{operands[0]} / {operands[1]} = {total}")
+
+        elif user_choice == "5":
+            total = math.pow(operands[0], operands[1])
+            if total.is_integer():
+                    total = int(total)
+            print(f"{operands[0]} ^ {operands[1]} = {total}")
+
+        elif user_choice == "6":
+            total = operands[0] % operands[1]
+            if total.is_integer():
+                    total = int(total)
+            print(f"{operands[0]} % {operands[1]} = {total}")
         
     else:
          print("That is not a valid option")
